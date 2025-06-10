@@ -1,0 +1,40 @@
+openapi: 3.1.0
+info:
+  title: Orion Calendar API
+  version: 1.0.0
+servers:
+  - url: https://orion-calendar.onrender.com
+paths:
+  /add_event:
+    post:
+      summary: Ajouter un événement dans Google Calendar
+      operationId: addEvent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                summary:
+                  type: string
+                start:
+                  type: string
+                  format: date-time
+                end:
+                  type: string
+                  format: date-time
+              required:
+                - summary
+                - start
+                - end
+      responses:
+        '200':
+          description: Événement ajouté avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
